@@ -25,24 +25,28 @@ class HistoryScreen extends StatelessWidget {
                 final entry = history[index];
                 return Card(
                   elevation: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          entry.expression,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w600),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          entry.result,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ],
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: () => Navigator.of(context).pop(entry),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            entry.expression,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            entry.result,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );

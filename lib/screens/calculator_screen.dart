@@ -535,14 +535,24 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     );
   }
 
-  void _handleMenuAction(_MenuAction action) {
+  Future<void> _handleMenuAction(_MenuAction action) async {
     switch (action) {
       case _MenuAction.history:
-        Navigator.of(context).push(
+        final selected = await Navigator.of(context).push<HistoryEntry>(
           MaterialPageRoute(
             builder: (context) => HistoryScreen(history: _history),
           ),
         );
+        if (!mounted || selected == null) {
+          return;
+        }
+        setState(() {
+          _expressionFocusNode.requestFocus();
+          _setExpression(selected.expression);
+          _result = selected.result;
+          _hasError = false;
+          _justEvaluated = false;
+        });
         break;
       case _MenuAction.theme:
         Navigator.of(context).push(
