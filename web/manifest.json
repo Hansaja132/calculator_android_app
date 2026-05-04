@@ -1,6 +1,6 @@
 {
-    "name": "calculator",
-    "short_name": "calculator",
+    "name": "Calcify",
+    "short_name": "Calcify",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
